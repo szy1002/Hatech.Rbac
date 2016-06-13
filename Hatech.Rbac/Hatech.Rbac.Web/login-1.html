@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>BootstrapValidator demo</title>
+
+    <link href="Content/bootstrap.css" rel="stylesheet">
+    
+
+    <!-- Include the FontAwesome CSS if you want to use feedback icons provided by FontAwesome -->
+    <!--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />-->
+
+    <script src="Scripts/jquery-2.2.3.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="Scripts/bootstrapValidator.js"></script>
+    <style>
+         .container{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .panel-body{
+            background-color: #ECFAFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container col-sm-4">
+        <div class="row">
+            <!-- form: -->
+            <section>
+               <div class="panel panel-primary ">
+                    <div class="panel-heading ">
+                        <h2 class="panel-title">用户登录</h2>
+                    </div>
+                    <div class="panel-body">
+                        <form id="defaultForm" method="post" class="form-horizontal" action="">
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">用户名</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" name="username" />
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">密&nbsp;&nbsp;&nbsp;码</label>
+                                <div class="col-lg-6">
+                                    <input type="password" class="form-control" name="password" />
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> 记住密码
+                                        </label>
+                        
+                                        <label>
+                                            <input type="checkbox"> 本地登录
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        
+                            
+
+                            <div class="form-group">
+                                <div class="col-sm-8 col-lg-offset-3">
+                                    <button type="submit" class="btn btn-primary btn-lg" name="logind" value="">登录</button>                              
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            <!-- :form -->
+        </div>
+    </div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // Generate a simple captcha
+    function randomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    };
+    $('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' '));
+
+    $('#defaultForm').bootstrapValidator({
+//        live: 'disabled',
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+			
+            username: {
+                message: '用户名无效',
+                validators: {
+                    notEmpty: {
+                        message: '用户名不能位空'
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: '用户名必须大于6，小于30个字'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_\.]+$/,
+                        message: '用户名只能由字母、数字、点和下划线组成'
+                    },
+                   
+                    
+                }
+            },
+           
+            password: {
+                validators: {
+                    notEmpty: {
+                        message: '密码不能位空'
+                    },
+                    
+                    different: {
+                        field: 'username',
+                        message: '用户名和密码不能相同'
+                    }
+                }
+            },
+            
+           
+           
+           
+            
+            
+        }
+    });
+
+    // Validate the form manually
+    $('#validateBtn').click(function() {
+        $('#defaultForm').bootstrapValidator('validate');
+    });
+
+    $('#resetBtn').click(function() {
+        $('#defaultForm').data('bootstrapValidator').resetForm(true);
+    });
+});
+</script>
+</body>
+</html>

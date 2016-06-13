@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>用户注册</title>
+
+    <!-- Bootstrap -->
+    <link href="Content/bootstrap.css" rel="stylesheet">
+
+    <script src="Scripts/jquery-2.2.3.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/jquery-2.2.3.js"></script>
+    <style>
+        #container{
+            padding:0 auto;
+        }
+        *{
+            padding: 0;margin: 0;
+        }
+        .header, .btn-zc{
+            background-color: #1fbaf3;
+        }
+        .container{
+            background-color: #f2f2f2;
+        }
+        .phoneRe{
+            font-size: 2em;
+            color: aliceblue;
+            line-height: 2em;
+        }
+        
+        .btn-zc{
+            font-size: 1.5em;
+            color: aliceblue; 
+        }
+        .previo{
+            font-size: 1em;
+            line-height: 4em;
+            color:aliceblue;
+        }
+        
+    </style>
+  </head>
+  <body>
+    <div id="container" class="container">
+        <div class="row header">
+            <div class="col-xs-3 control-label text-left"><a href="#" class="previo"><span class="glyphicon glyphicon-chevron-left" ></span>返回</a></div>
+            <div class="col-xs-6 control-label text-center"><span class="phoneRe">手机注册</span></div>
+            <div class="col-xs-3 control-label text-right"><a href="#" class="previo"><span class="glyphicon glyphicon-home" ></span>首页</a></div>   
+        </div>      
+        <div class="content row">
+            <div class="panel-body">
+                <form id="defaultForm" method="post" class="form-horizontal" action="">
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">手机号</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" name="username" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">随机码</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" name="email" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">验证码</label>
+                                <div class="col-lg-6">
+                                    <input type="password" class="form-control" name="password" />
+                                    <a href="">获取验证码</a>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">密&nbsp;&nbsp;&nbsp;码</label>
+                                <div class="col-lg-6">
+                                    <input type="password" class="form-control" name="confirmPassword" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                             <div class="checkbox">
+                                 <label>
+                                     <input type="checkbox">我已阅读并同意<a>注册协议</a>和<a>隐私条例</a> 
+                                 </label>
+                             </div>
+                         </div>
+                     </div> 
+                    <div class="form-group">
+                        <div class="col-sm-12 control-label">
+                            <button type="submit" class="btn btn-zc btn-lg btn-block" name="signup" value="">注&nbsp;&nbsp;&nbsp;册</button>                              
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+      
+</body>
+     
+</html>

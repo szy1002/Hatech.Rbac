@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>BootstrapValidator demo</title>
+
+    <link href="Content/bootstrap.css" rel="stylesheet">
+    
+
+    <!-- Include the FontAwesome CSS if you want to use feedback icons provided by FontAwesome -->
+    <!--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />-->
+
+    <script src="Scripts/jquery-2.2.3.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="Scripts/bootstrapValidator.js"></script>
+    <style>
+         .container{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .panel-body{
+            background-color: #ECFAFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container col-sm-4">
+        <div class="row">
+            <!-- form: -->
+            <section>
+               <div class="panel panel-primary ">
+                    <div class="panel-heading ">
+                        <h2 class="panel-title">用户注册</h2>
+                    </div>
+                    <div class="panel-body">
+                        <form id="defaultForm" method="post" class="form-horizontal" action="">
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">用户名</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" name="username" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">邮箱</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" name="email" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">密码</label>
+                                <div class="col-lg-6">
+                                    <input type="password" class="form-control" name="password" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">确认密码</label>
+                                <div class="col-lg-6">
+                                    <input type="password" class="form-control" name="confirmPassword" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">性别</label>
+                                <div class="col-lg-3">
+                                    <div class="radio-inline">
+                                        <label>
+                                            <input type="radio" name="gender" value="0" /> 男
+                                        </label>
+                                    </div>
+                                    <div class="radio-inline">
+                                        <label>
+                                            <input type="radio" name="gender" value="1" /> 女
+                                        </label>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                        
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label" id="captchaOperation"></label>
+                                <div class="col-lg-3">
+                                    <input type="text" class="form-control" name="captcha" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-8 col-lg-offset-3">
+                                    <button type="submit" class="btn btn-primary btn-lg" name="signup" value="">注册</button>                              
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            <!-- :form -->
+        </div>
+    </div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // Generate a simple captcha
+    function randomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    };
+    $('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' '));
+
+    $('#defaultForm').bootstrapValidator({
+//        live: 'disabled',
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+//                 验证用户名
+            username: {
+                message: '用户名无效',
+                validators: {
+                    notEmpty: {
+                        message: '用户名不能位空'
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: '用户名必须大于6，小于30个字'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_\.]+$/,
+                        message: '用户名只能由字母、数字、点和下划线组成'
+                    },
+                   
+                    different: {
+                        field: 'password',
+                        message: '用户名和密码不能相同'
+                    }
+                }
+            },
+//                 验证邮箱
+            email: {
+                validators: {
+                    notEmpty: {
+                        message: '电子邮件地址不能位空'
+                    },
+                    emailAddress: {
+                        message: '输入不是有效的电子邮件地址'
+                    },
+                    regexp:{
+                        regexp: /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/,
+                        message:'输入正确的电子邮件地址'
+                    }
+                }
+            },
+//                 验证密码
+            password: {
+                validators: {
+                    notEmpty: {
+                        message: '密码不能位空'
+                    },
+                    identical: {
+                        field: 'confirmPassword',
+                        message: '两次密码不一致'
+                    },
+                    different: {
+                        field: 'username',
+                        message: '用户名和密码不能相同'
+                    }
+                }
+            },
+//                 再次验证密码
+            confirmPassword: {
+                validators: {
+                    notEmpty: {
+                        message: '密码不能为空'
+                    },
+                    identical: {
+                        field: 'password',
+                        message: '两次密码不一致'
+                    },
+                    different: {
+                        field: 'username',
+                        message: '用户名和密码不能相同'
+                    }
+                }
+            },
+//                  验证答案
+            captcha: {
+                validators: {
+                    callback: {
+                        message: '答案错误',
+                        callback: function(value, validator) {
+                            var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
+                            return value == sum;
+                        }
+                    }
+                }
+            },
+            submitHandler: function(form) {
+					var param = $("#defaultForm").serialize();
+					$.ajax({
+						url : "http://10.113.0.47:30000/api/account/login",
+						type : "get",
+						dataType : "json",
+						data : param,
+						success : function(result) {
+							if(result == 'success') {
+								location.href = '';
+							} else {
+								var jsonObj = eval('('+result+')');
+							}
+						}
+					});
+				},
+				invalidHandler: function(form, validator) {  //不通过回调
+					return false;
+				}
+        }
+    });
+
+    // Validate the form manually
+    $('#validateBtn').click(function() {
+        $('#defaultForm').bootstrapValidator('validate');
+    });
+
+    $('#resetBtn').click(function() {
+        $('#defaultForm').data('bootstrapValidator').resetForm(true);
+    });
+});
+</script>
+</body>
+</html>

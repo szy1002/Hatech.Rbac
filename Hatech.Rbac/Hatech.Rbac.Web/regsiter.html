@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="Content/bootstrap.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+      
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="Scripts/jquery-2.2.3.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="Scripts/bootstrap.js"></script>
+    <style>
+       .container{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .panel-body{
+            background-color: #ECFAFF;
+        }
+        #reSex{
+            padding-top: 0px;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container col-sm-4">
+        <div class="panel panel-primary ">
+            <div class="panel-heading ">
+                <h2 class="panel-title">用户注册</h2>
+            </div>
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="inputName" class="col-sm-3 control-label">用户名</label>
+                        <div class="col-sm-7">
+                            <input type="username" class="form-control" id="inputName" placeholder="请输入用户名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-sm-3 control-label">密&nbsp;&nbsp;&nbsp;码</label>
+                        <div class="col-sm-7">
+                            <input type="password" class="form-control" id="inputPassword" placeholder="请输入密码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-sm-3 control-label">确认密码</label>
+                        <div class="col-sm-7">
+                            <input type="password" class="form-control" id="inputPassword" placeholder="请输入密码">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group ">
+                        <label for="inputSex" class="col-sm-3 control-label ">性别</label>
+                        <div class="col-sm-7">
+                            <div class="radio " id="reSex">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="men"> 男
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="women"> 女
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-sm-3 control-label">邮&nbsp;&nbsp;&nbsp;箱</label>
+                        <div class="col-sm-7">
+                            <input type="email" class="form-control" id="inputEmail" placeholder="请输入邮箱">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="iphone_num" class="col-sm-3 control-label">手机号码</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="inputIphone_num" placeholder="请输入手机">
+                        </div>       
+                    </div>
+                    
+                    
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary">注册</button>
+                            <button type="subimt" class="btn btn-info">重置</button>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+ </div>
+
+    
+  </body>
+</html>

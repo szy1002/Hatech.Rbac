@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>注册</title>
+    <link href="Content/bootstrap.css" rel="stylesheet">
+	<link href="Content/login.css" rel="stylesheet">
+    <script src="Scripts/jquery-2.2.3.js"></script>
+	<script src="Scripts/bootstrap.js"></script>
+	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <style>
+    	label {
+    		display: block;
+    		text-align: left;
+			color: #ffffff;
+    	}
+		body.login-page  {
+			background-color: #ffffff;
+		}
+		.input-group {
+			width: 100%;
+		}
+		.login-page .login-form .form-group .btn-login {
+			text-align: center;
+		}
+    </style>
+</head>
+<body class="login-page">
+	<div class="login-form">
+		<div class="login-form">
+			<div class="login-content">
+				
+
+				<form method="post" role="form" id="form_login">
+					<div class="form-group">
+						<div class="input-group">
+							<input type="text" class="form-control" name="name" id="username" placeholder="用户名" autocomplete="off" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="input-group">
+							<input type="password" class="form-control" name="pwd" id="password" placeholder="密码" autocomplete="off" />
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary btn-block btn-login">
+							<i class="fa fa-sign-in"></i>
+							注册
+						</button>
+					</div>	
+					<div class="form-group">
+						<p class="form-control-static"></p>
+					</div>					
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function() {
+  			$("#form_login").validate({
+    			rules: {
+	      			name: {
+		        		required: true,
+		        		email:true
+		      		},
+					pwd: {
+						required: true,
+						minlength: 6
+					}
+	    		},
+    			messages: {
+					name: {
+						required: "请输入正确的邮箱地址",
+						minlength: "请输入正确的邮箱地址"
+					},
+					pwd: {
+						required: "请输入密码",
+						minlength: "密码长度不能小于 6 个字母"
+					}
+				},
+				submitHandler: function(form) {
+					var name=$("#username").val();
+					var pwd=$("#password").val();
+					$.ajax({
+						url : "http://10.113.0.47:30000/api/account/register",
+						type : "get",
+						dataType : "json",
+						data : name + pwd,
+						success : function(data) {
+							if(data.toString()=="true"){
+				  				$("p.form-control-static").html("注册成功");
+				  				window.location.href="";
+							}else{
+				  				$("p.form-control-static").html("注册失败");
+							}
+						}
+					});
+				},
+				invalidHandler: function(form, validator) {
+					return false;
+				}
+			})
+  		});
+	</script>
+</body>
+</html>
